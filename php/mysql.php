@@ -1,71 +1,81 @@
-<!DOCTYPE html>
-<html lang="de">
+<?php
 
-<head>
-    <meta charset="utf-8">
-    <title>Titel der Einzelseite</title>
-    <meta name="description" content="Diese Webseite ist ein Übungsbeispiel und soll ein Einkauflisten-Tool darstellen">
-    <meta name="author" content="Fabian Seidler">
-    <meta name="keywords" content="Einkauf, Notiz, Zettel, Einkaufsliste, ToDo, AngularJS Beispielprojekt">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Das neueste kompilierte und minimierte CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Optionales Theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <!-- CSS einbinden -->
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- jQuerry einbinden -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <!-- Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <!-- Bootstrap - Das neueste kompilierte und minimierte JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!--einbindung js-->
-    <script src="./js/app.js"></script>
-    <title>Grocery List</title>
-</head>
+class DB 
+	{
+		private static $_db_username = "root";
+		private static $_db_password = "";
+		private static $_db_host = "localhost";
+		private static $_db_name = "fooddb";
+		private static $_db;
 
-<body>
-    <!-- Default Navbar von Bootstrap -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-                <a class="navbar-brand" href="#"><img src="./img/headerlogo.png" alt="Grocery List" class="navbar-image" height="38px"></a>
-            </div>
+		function __construct() 
+		{
+			try 
+			{
+				self::$_db = new PDO("mysql:host=" . self::$_db_host . ";dbname=" . self::$_db_name,  self::$_db_username , self::$_db_password);
+			} 
+			catch(PDOException $e) 
+			{
+				die();
+			}
+        }
 
-            <div class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategorien<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Lebensmittel</a></li>
-                            <li><a href="#">Trinken</a></li>
-                            <li><a href="#">Kleidung</a></li>
-                            <li><a href="#">Elektronik</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Sonstige</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-</body>
-
-</html>     ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+        // Initializes Tables & example etrys
+        function initDB() 
+        {
+            // Create Foodporn Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`foodporn` ( `id_foodporn` INT NOT NULL AUTO_INCREMENT , 
+            `image` TEXT NOT NULL , 
+            `title` TEXT NOT NULL , 
+            `description` LONGTEXT NOT NULL , 
+            `category` VARCHAR(255) NOT NULL , 
+            `fs_user` INT NOT NULL , 
+            `dateCreated` DATE NOT NULL , 
+            PRIMARY KEY (`id_foodporn`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
+
+            // Create User Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`user` ( `id_user` INT NOT NULL AUTO_INCREMENT , 
+            `username` VARCHAR(255) NOT NULL , 
+            `mail` VARCHAR(255) NOT NULL , 
+            `password` VARCHAR(255) NOT NULL , 
+            `description` TEXT NOT NULL , 
+            `image` TEXT NOT NULL , 
+            `session` TEXT NOT NULL , 
+            PRIMARY KEY (`id_user`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            $stmt->execute();
+
+            // Create Like Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`likes` ( `id_like` INT NOT NULL AUTO_INCREMENT , 
+            `islike` INT(2) NOT NULL , 
+            `fs_user` INT NOT NULL , 
+            `fs_foodporn` INT NOT NULL , 
+            PRIMARY KEY (`id_like`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            $stmt->execute();
+
+            // Create Favorit Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`favorit` ( `id_favorit` INT NOT NULL AUTO_INCREMENT , 
+            `fs_foodporn` INT NOT NULL , 
+            `fs_user` INT NOT NULL , 
+            PRIMARY KEY (`id_favorit`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            $stmt->execute();
+
+            // Create Comment Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`comment` ( `id_comment` INT NOT NULL AUTO_INCREMENT , 
+            `content` TEXT NOT NULL , 
+            `dateCreated` DATE NOT NULL , 
+            `fs_foodporn` INT NOT NULL , 
+            `fs_user` INT NOT NULL , 
+            PRIMARY KEY (`id_comment`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            $stmt->execute();
+
+
+
 
 
             // Create List Example Entry
