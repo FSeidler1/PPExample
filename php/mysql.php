@@ -76,16 +76,19 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO list (id_list,title,fk_user,category,dateCreated)
-                VALUES(1,'Einkauf Party 17.1.2017','Trinken',NOW())");
+                VALUES(1,'Einkauf Party 17.1.2017',1,'Trinken',NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO list (id_list,title,fk_user,category,dateCreated)
-                VALUES(2,'Essen Wochenende','Lebensmittel',NOW())");
+                VALUES(2,'Essen Wochenende',1,'Lebensmittel',NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO list (id_list,title,fk_user,category,dateCreated)
-                VALUES(3,'Alkohohllager','Trinken',NOW())");
+                VALUES(3,'Alkohohllager',1,'Trinken',NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO list (id_list,title,fk_user,category,dateCreated)
-                VALUES(4,'Sonntagsshoppen Ikea','Sonstige',NOW())");
+                VALUES(4,'Sonntagsshoppen Ikea',1,'Sonstige',NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO list (id_list,title,fk_user,category,dateCreated)
+                VALUES(5,'Meine Liste',2,'Sonstige',NOW())");
                 $stmt->execute();
             }
 
