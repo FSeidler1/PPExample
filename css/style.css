@@ -5,6 +5,10 @@ body {
     background-size: cover;
 }
 
+.navbar {
+    min-width: 300px;
+}
+
 .navbar-image {
     margin-top: -10px;
 }

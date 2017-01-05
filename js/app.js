@@ -31,7 +31,7 @@ loginApp.controller('FormController',
                         //setzt zusäätzlich lokales Loginflag
                         localStorage.setItem("loggedIn", "true");
                         //Redirect auf Main weil Login korrekt
-                        window.location.replace("./assets/html/main.html");
+                        window.location.replace("./html/main.html");
                     } else {
                         //Feedback - Fehlerhafte Login-Daten
                         falseData();
