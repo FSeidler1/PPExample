@@ -4,7 +4,7 @@ session_start();
 // Create Database (if not exists)
 $dbusername = "root";
 $dbpassword = "";
-$dbname = "fooddb";
+$dbname = "shoppingdb";
 $pdo = new PDO("mysql:host=localhost", $dbusername, $dbpassword);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->query("CREATE DATABASE IF NOT EXISTS $dbname");

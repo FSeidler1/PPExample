@@ -5,7 +5,7 @@ class DB
 		private static $_db_username = "root";
 		private static $_db_password = "";
 		private static $_db_host = "localhost";
-		private static $_db_name = "fooddb";
+		private static $_db_name = "shoppingdb";
 		private static $_db;
 
 		function __construct() 
@@ -23,15 +23,13 @@ class DB
         // Initializes Tables & example etrys
         function initDB() 
         {
-            // Create Foodporn Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`foodporn` ( `id_foodporn` INT NOT NULL AUTO_INCREMENT , 
-            `image` TEXT NOT NULL , 
-            `title` TEXT NOT NULL , 
-            `description` LONGTEXT NOT NULL , 
-            `category` VARCHAR(255) NOT NULL , 
-            `fs_user` INT NOT NULL , 
+            // Create List Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `shoppingdb`.`list` ( `id_list` INT NOT NULL AUTO_INCREMENT , 
+            `title` VARCHAR(255) NOT NULL , 
+            `fk_user` INT NOT NULL , 
+            `category` VARCHAR(255) NOT NULL ,
             `dateCreated` DATE NOT NULL , 
-            PRIMARY KEY (`id_foodporn`)
+            PRIMARY KEY (`id_list`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
 
@@ -48,9 +46,13 @@ class DB
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
 
-
-
-
+            // Create Product Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `shoppingdb`.`product` ( `id_product` INT NOT NULL AUTO_INCREMENT ,
+            `title` TEXT NOT NULL , 
+            `dateCreated` DATE NOT NULL , 
+            PRIMARY KEY (`id_product`)
+            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
+            $stmt->execute();
 
             // Create ListProduct Table
             $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `shoppingdb`.`listproduct` ( `id_listproduct` INT NOT NULL AUTO_INCREMENT ,
@@ -158,14 +160,14 @@ class DB
                 VALUES(1,1,1,1,2,NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO listproduct (id_listproduct,fk_user,fk_list,fk_produkt,countproduct,dateCreated)
-                VALUES(1,1,1,1,2,NOW())");
+                VALUES(2,1,1,1,2,NOW())");
                 $stmt->execute();
             }
             
             
 
         // Return True if User is logged in
-        /*function isUserLoggedin() 
+        function isUserLoggedin() 
         {
             $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user WHERE session=:sid");
             $sid = session_id();
@@ -182,14 +184,13 @@ class DB
             }
             else
             {
-                return "Error: More then one identical User could be logged in!";
+                return "Error: More than one identical User could be logged in!";
             }
-        }*/
-        //User ist eingeloggt
+        }/*
         function isUserLoggedin() 
         {
              return "true";
-        }
+        }*/
 
 
 
@@ -201,10 +202,10 @@ class DB
 
 
 
-
+/*
 
         // Get User By id_user 
-        function getUserById(/*$uid*/)
+        function getUserById($uid)
         {
             $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
@@ -304,6 +305,7 @@ class DB
             {
                 return "false";
             }
-        }
+        }*/
     }
+}
 ?>

@@ -1,0 +1,116 @@
+/* Hindergrund definieren */
+
+body {
+    background-image: url("./../img/bg-login.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+/* Registrations Panel designt */
+
+.panel {
+    width: 40%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 300px;
+    background-color: transparent;
+    border: 0;
+}
+
+
+/*Input bei der Reistration designt */
+
+.input-group {
+    height: 40%;
+}
+
+
+/* grösse und ausrichtung  */
+
+.btn {
+    width: 50%;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+.input-group-addon:first-child {
+    min-width: 5rem;
+}
+
+.panel-title {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+
+/* Design für Geräte bis 768px bestimmen */
+
+@media (max-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
+}
+
+
+/* Design für Geräte ab 768px bestimmen */
+
+@media (min-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
+}
+
+
+/* Design für Geräte ab 992px bestimmen */
+
+@media (min-width: 992px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 100px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 100px;
+        font-style: italic;
+    }
+}
+
+.falseUserLogin {
+    color: red;
+    font-size: 16px;
+}
+
+#falseUserLogin {
+    display: none;
+}
+
+#textBorderChoclate {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.login-logoimg {
+    width: 100%;
+    height: auto;
+}
