@@ -21,7 +21,7 @@ class Controller {
             }
             else if($_GET["action"] == "logout")
             {
-                $this->logoff();
+                $this->logout();
             }
             else if($_GET["action"] == "get")
             {
@@ -58,9 +58,9 @@ class Controller {
         $this->json = $this->db->isUserLoggedin();
     }
 
-    // Logoff Loggoff
-    function logoff() {
-        $this->db->logoff();
+    // logout 
+    function logout() {
+        $this->db->logout();
         $this->json = "true";
     }
 

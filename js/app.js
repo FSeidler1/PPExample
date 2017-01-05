@@ -1,5 +1,6 @@
 //Login Controller
 var loginApp = angular.module("loginApp", []);
+var mainApp = angular.module("mainApp", []);
 
 
 //Login Formular absenden und Benutzer prüfen
@@ -48,3 +49,20 @@ function falseData() {
     var mydiv = document.getElementById("falseUserLogin");
     mydiv.style.display = "block";
 }
+
+
+
+mainApp.controller('logoutController',
+    function logoutController($scope, $http) {
+        $scope.userLogOut = function() {
+            $http.get('./../php/Controller.php?class=user&action=logout').success(
+                function(data) {
+                    localStorage.setItem("loggedIn", "false");
+                    isloggedin = false;
+                    //redirect to index
+                    window.location.replace("./../index.html");
+                }
+            );
+        }
+    }
+);

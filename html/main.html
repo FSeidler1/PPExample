@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" ng-app="mainApp">
 
 <head>
     <meta charset="utf-8">
@@ -53,6 +53,11 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Sonstige</a></li>
                         </ul>
+                    </li>
+                    <li ng-controller="logoutController">
+                        <p class="navbar-btn">
+                            <a ng-click="userLogOut()" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </p>
                     </li>
                 </ul>
             </div>

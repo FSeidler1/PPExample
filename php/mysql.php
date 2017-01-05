@@ -263,7 +263,7 @@ class DB
         }
 
         // Logof User with Session 
-        function logoff() {
+        function logout() {
             $stmt = self::$_db->prepare("UPDATE user SET session='' WHERE session=:sid");
             $sid = session_id();
             $stmt->bindParam(":sid", $sid);

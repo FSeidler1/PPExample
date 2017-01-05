@@ -12,3 +12,7 @@ body {
 .navbar-image {
     margin-top: -10px;
 }
+
+.navbar-btn {
+    margin-left: 15px;
+}
