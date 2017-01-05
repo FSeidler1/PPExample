@@ -23,26 +23,10 @@ class Controller {
             {
                 $this->logout();
             }
-            else if($_GET["action"] == "get")
-            {
-                $this->getUser();
-            }
-            else if($_GET["action"] == "update")
-            {
-                $this->updateUser();
-            }
-            else if($_GET["action"] == "updatePassword")
-            {
-                $this->updatePassword();
-            }
-            else if($_GET["action"] == "registration")
-            {
-                $this->addUser();
-            }
         }
         else
         {
-            $this->getAllUsers();
+            echo("Diese User Action ist nicht implementiert");
         }
     }
 
@@ -62,49 +46,6 @@ class Controller {
     function logout() {
         $this->db->logout();
         $this->json = "true";
-    }
-
-    // Get User DAta (exept Password)
-    function getUser() {
-        $_POST = json_decode(file_get_contents("php://input"), true); 
-
-        $users = $this->db->getUser();
-
-        $this->json = json_encode($users);
-    }
-
-
-    // Get all User DAta (exept Password)
-    function getAllUsers() {
-        $users = $this->db->getAllUsers();
-
-        $this->json = json_encode($users);
-    }
-
-    // Save User data
-    function updateUser() {
-        $_POST = json_decode(file_get_contents("php://input"), true); 
-        $this->db->updateUser($_POST["beschreibung"], $_POST["image"]);
-        if(isset($_POST["altesPW"]) === TRUE)
-        {
-            $this->updatePassword();
-        }
-        $this->json = "true";
-    }
-
-    // Save User password
-    function updatePassword() {
-        $_POST = json_decode(file_get_contents("php://input"), true); 
-        $this->json = $this->db->updateUserPassword($_POST["altesPW"], $_POST["neuesPW"]);
-    }
-
-    // Add new User
-    function addUser() {
-        $_POST = json_decode(file_get_contents("php://input"), true);
-        $username = $_POST["benutzer_registration"];
-        $email = $_POST["email_registration"];
-        $password = $_POST["passwort_registration"];
-        $this->json = $this->db->registerUser($username, $email, $password);
     }
 
     // Display

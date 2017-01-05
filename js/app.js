@@ -50,8 +50,7 @@ function falseData() {
     mydiv.style.display = "block";
 }
 
-
-
+//Logt den aktuell angemeldeten User aus
 mainApp.controller('logoutController',
     function logoutController($scope, $http) {
         $scope.userLogOut = function() {
@@ -66,3 +65,32 @@ mainApp.controller('logoutController',
         }
     }
 );
+
+//Überprüfen ob User bereits eingeloggt ist
+//Übergabeparameter ist die aktuelle Seite, von wo die Funktion aufgerufen wird
+function isUserLoggedIn(actualPage) {
+    var loggedIn = localStorage.getItem("loggedIn");
+    switch (actualPage) {
+        case "index":
+            if (loggedIn === "true") {
+                //load 'main' page
+                window.location.replace("./html/main.html");
+            } else {
+                //redirect to index
+                //allready in index - do nothing
+            }
+            break;
+        case "main":
+            if (loggedIn === "true") {
+                //do nothing                
+            } else {
+                //redirect to index
+                window.location.replace("./../index.html");
+            }
+            break;
+
+        default:
+            console.log("Login Case unbekannt - nicht implementiert");
+            break;
+    }
+}
