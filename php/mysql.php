@@ -36,41 +36,30 @@ class DB
             $stmt->execute();
 
             // Create User Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`user` ( `id_user` INT NOT NULL AUTO_INCREMENT , 
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `shoppingdb`.`user` ( `id_user` INT NOT NULL AUTO_INCREMENT , 
             `username` VARCHAR(255) NOT NULL , 
-            `mail` VARCHAR(255) NOT NULL , 
+            `firstname` VARCHAR(255) NOT NULL ,
+            `lastname` VARCHAR(255) NOT NULL ,
             `password` VARCHAR(255) NOT NULL , 
-            `description` TEXT NOT NULL , 
             `image` TEXT NOT NULL , 
+            `ispremium` INT(2) NOT NULL , 
             `session` TEXT NOT NULL , 
             PRIMARY KEY (`id_user`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
 
-            // Create Like Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`likes` ( `id_like` INT NOT NULL AUTO_INCREMENT , 
-            `islike` INT(2) NOT NULL , 
-            `fs_user` INT NOT NULL , 
-            `fs_foodporn` INT NOT NULL , 
-            PRIMARY KEY (`id_like`)
-            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
-            $stmt->execute();
 
-            // Create Favorit Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`favorit` ( `id_favorit` INT NOT NULL AUTO_INCREMENT , 
-            `fs_foodporn` INT NOT NULL , 
-            `fs_user` INT NOT NULL , 
-            PRIMARY KEY (`id_favorit`)
-            ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
-            $stmt->execute();
 
-            // Create Comment Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`comment` ( `id_comment` INT NOT NULL AUTO_INCREMENT , 
-            `content` TEXT NOT NULL , 
+
+
+            // Create ListProduct Table
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `shoppingdb`.`listproduct` ( `id_listproduct` INT NOT NULL AUTO_INCREMENT ,
+            `fk_user` INT NOT NULL , 
+            `fk_list` INT NOT NULL ,
+            `fk_produkt` INT NOT NULL , 
+            `countproduct` INT NOT NULL , 
             `dateCreated` DATE NOT NULL , 
-            `fs_foodporn` INT NOT NULL , 
-            `fs_user` INT NOT NULL , 
-            PRIMARY KEY (`id_comment`)
+            PRIMARY KEY (`id_listproduct`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
 
@@ -151,11 +140,11 @@ class DB
             $count = $stmt->fetch()["c"];
             if($count < 1)
             {
-                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,firstname,lastname,password,image,session)
-                VALUES(1,'test@test.ch', 'Franz', 'Müller', '" . hash("sha512","1234") . "', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Profilbild_Polo_Ocker_Zoom.jpg', '')");
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,ispremium,username,firstname,lastname,password,image,session)
+                VALUES(1, 1,'test@test.ch', 'Franz', 'Müller', '" . hash("sha512","1234") . "', 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Profilbild_Polo_Ocker_Zoom.jpg','')");
                 $stmt->execute();
-                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,firstname,lastname,password,image,session)
-                VALUES(2,'bsp@bsp.ch', 'Hans', 'Dampf', '" . hash("sha512","1234") . "', 'http://wwwhome.math.utwente.nl/~zwarthj/hans3.jpg', '')");
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,ispremium,username,firstname,lastname,password,image,session)
+                VALUES(2, 1,'bsp@bsp.ch', 'Hans', 'Dampf', '" . hash("sha512","1234") . "', 'http://wwwhome.math.utwente.nl/~zwarthj/hans3.jpg','')");
                 $stmt->execute();
             }
             
