@@ -72,8 +72,80 @@
 
 
     <!-- Einzelne Listeneinträge aus DB auslesen und aufbauen -->
+    <!-- 
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-repeat="entry in entrys" class="item" id="entry_{{entry.id_foodporn}}">
+                <div class="list-container">
+                    <p class="foodporn-title">{{entry.title}}</p>
+                    <p class="foodporn-description" id="entryDesc">{{entry.description}}</p>
+                    <div class="foodporn-container-footer" ng-controller="setLikeFavorite">
+                        <a class="foodporn-like-button green noselect" ng-click="setLike();">
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>{{entry.likes}}</span>
+                        </a>
+                        <a class="foodporn-like-button red noselect" ng-click="setDisike();">
+                            <i class="fa fa-thumbs-down"></i>
+                            <span>{{entry.dislikes}}</span>
+                        </a>
+                        <a class="foodporn-eye-button {{entry.favorit}} noselect" ng-click="setFavorite()">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="foodporn-byuser">by {{entry.user.username}}</a>
+                    </div>
+                        Button für Grossansicht
 
+                </div>
+            </div>
+        </div>
+    </div>-->
     <!-- Listeneinträge ende -->
+
+    <!-- Beispiel Listeneinträge zu Testzwecken -->
+    <div class="container-fluid" id="container-fluid-list">
+        <div class="row">
+            <div class="list" id="entry_{{entry.id_list}}">
+                <div class="center-content">
+                    <div class="list-container">
+                        <img class="list-img" src="./../img/list-img.png" width="35px">
+                        <p class="list-title">Tiiiiiteel</p>
+                        <div class="list-infos">
+                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
+                            <p class="list-category" id="listcat_1">Kaategoriee</p>
+                            <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center-content">
+                    <div class="list-container">
+                        <img class="list-img" src="./../img/list-img.png" width="35px">
+                        <p class="list-title">Tiiiiiteel</p>
+                        <div class="list-infos">
+                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
+                            <p class="list-category" id="listcat_1">Kaategoriee</p>
+                            <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="list-container">
+                        <img class="list-img" src="./../img/list-img.png" width="35px">
+                        <p class="list-title">Tiiiiiteel</p>
+                        <div class="list-infos">
+                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
+                            <p class="list-category" id="listcat_1">Kaategoriee</p>
+                            <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
