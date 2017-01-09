@@ -58,6 +58,13 @@ body {
     background: -ms-radial-gradient(center, ellipse cover, rgba(224, 224, 224, 1) 0%, rgba(180, 181, 182, 0.46) 100%);
     background: radial-gradient(ellipse at center, rgba(224, 224, 224, 1) 0%, rgba(180, 181, 182, 0.46) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#b4b5b6', GradientType=1);
+    -webkit-transition: background-color 1s;
+    /* For Safari 3.1 to 6.0 */
+    transition: background-color 1s;
+}
+
+.list-container:hover {
+    background-color: #b3b3b3;
 }
 
 .list-img {
@@ -66,7 +73,6 @@ body {
 }
 
 .list-title {
-    width: 40%;
     margin-left: 30px;
     font-size: 38px;
     display: inline-block;
@@ -74,7 +80,7 @@ body {
 
 .list-infos {
     float: right;
-    width: 30%;
+    width: 25%;
     min-width: 235px;
 }
 
@@ -82,7 +88,7 @@ body {
     width: 70%;
     font-size: 20px;
     display: inline-block;
-    text-align: center;
+    padding-left: 5px;
     margin-top: 13px;
     vertical-align: text-bottom;
 }

@@ -105,7 +105,6 @@ mainApp.controller('buildMainEntrys',
                 $scope.entrys = data;
             }
         );
-        /*
         //Filterung über Dropdown-Feld, Einträge gefiltert zurück
         $scope.getElementCategory = function(category) {
                 $http.get('./../php/Controller.php?class=main&action=filterCategory&filter=' + category).success(
@@ -125,5 +124,4 @@ mainApp.controller('buildMainEntrys',
             $("#openModal_img").attr('src', xEntry.image);
             $("#myModal").modal();
         }
-        */
     });

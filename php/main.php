@@ -118,13 +118,13 @@ class Controller {
             $arrayList["date"] = $list["dateCreated"];
 
             // Users   
-            $users = $this->db->getUserById($id_list["fk_user"]);
+            $users = $this->db->getUserById($list["fk_user"]);
             foreach($users as $user)
             {
                 $arrayUser = array();
                 $arrayUser["id_user"] = $user["id_user"]; 
                 $arrayUser["username"] = $user["username"];
-                $arrayFoodporn["user"] = $arrayUser;
+                $arrayList["user"] = $arrayUser;
             }
             array_push($arrayjson, $arrayList);
         }
@@ -196,6 +196,10 @@ class Controller {
             array_push($arrayjson, $arrayFoodporn);
         }
         $this->json = json_encode($arrayjson);
+    }
+    // Display
+    public function display(){
+        echo $this->json;
     }
 }
 ?>

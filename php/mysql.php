@@ -204,7 +204,7 @@ class DB
         // Get User By id_user 
         function getUserById($uid)
         {
-            $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
+            $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.firstname AS firstname, u.lastname AS lastname,u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
@@ -261,7 +261,7 @@ class DB
             return $stmt->fetch()["id_user"];
         }
 
-        // Get ONLY Foodporn Comntext
+        // Get ONLY List Comntext
         function getAllLists()
         {
             $stmt = self::$_db->prepare("SELECT * FROM list");
@@ -322,5 +322,5 @@ class DB
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }        
     }
-
+}
 ?>
