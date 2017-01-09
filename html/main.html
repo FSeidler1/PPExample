@@ -29,7 +29,7 @@
     </script>
 </head>
 
-<body>
+<body ng-controller="buildMainEntrys">
     <!-- Default Navbar von Bootstrap -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -104,39 +104,14 @@
     <!-- Beispiel Listeneinträge zu Testzwecken -->
     <div class="container-fluid" id="container-fluid-list">
         <div class="row">
-            <div class="list" id="entry_{{entry.id_list}}">
+            <div ng-repeat="entry in entrys" class="list" id="entry_{{entry.id_list}}">
                 <div class="center-content">
                     <div class="list-container">
                         <img class="list-img" src="./../img/list-img.png" width="35px">
-                        <p class="list-title">Tiiiiiteel</p>
+                        <p class="list-title">{{entry.title}}</p>
                         <div class="list-infos">
-                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
-                            <p class="list-category" id="listcat_1">Kaategoriee</p>
-                            <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="center-content">
-                    <div class="list-container">
-                        <img class="list-img" src="./../img/list-img.png" width="35px">
-                        <p class="list-title">Tiiiiiteel</p>
-                        <div class="list-infos">
-                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
-                            <p class="list-category" id="listcat_1">Kaategoriee</p>
-                            <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="center-content">
-                    <div class="list-container">
-                        <img class="list-img" src="./../img/list-img.png" width="35px">
-                        <p class="list-title">Tiiiiiteel</p>
-                        <div class="list-infos">
-                            <a class="glyphicon glyphicon-list-alt listCatIcon"></a>
-                            <p class="list-category" id="listcat_1">Kaategoriee</p>
+                            <a class="glyphicon glyphicon-list-alt" id="listCatIcon"></a>
+                            <p class="list-category" id="listcat_{{entry.id_list}}">{{entry.category}}</p>
                             <a class="glyphicon glyphicon-fullscreen openModalButton" ng-click="buildModalEntry(entry)">
                             </a>
                         </div>

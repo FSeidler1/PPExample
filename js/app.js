@@ -94,3 +94,36 @@ function isUserLoggedIn(actualPage) {
             break;
     }
 }
+
+//Bildet die Einträge auf der Hauptseite, wird von main.html aufgerufen
+mainApp.controller('buildMainEntrys',
+    function mainController($scope, $http) {
+        $scope.navSearch = "";
+        $scope.entrys = [];
+        $http.get('./../php/controller.php?class=main').success(
+            function(data) {
+                $scope.entrys = data;
+            }
+        );
+        /*
+        //Filterung über Dropdown-Feld, Einträge gefiltert zurück
+        $scope.getElementCategory = function(category) {
+                $http.get('./../php/Controller.php?class=main&action=filterCategory&filter=' + category).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            //Sicherheit, dass Modal auf Main für neue Einträge leer ist
+        $scope.entry = { user: { username: "" }, title: "", description: "", image: "" };
+        $scope.buildModalEntry = function(xEntry) {
+            //this.entry.id_foodporn
+            $scope.entry.user.username = xEntry.user.username;
+            $scope.entry.title = xEntry.title;
+            $scope.entry.description = xEntry.description;
+            $("#openModal_img").attr('src', xEntry.image);
+            $("#myModal").modal();
+        }
+        */
+    });

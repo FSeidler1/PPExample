@@ -26,7 +26,7 @@ class Controller {
         }
         else
         {
-            $this->getAllFoodporns();
+            $this->getAllLists();
         }
     }
     
@@ -105,66 +105,28 @@ class Controller {
         $this->json = json_encode($arrayjson);
     }
 
-    // Get All Foodporns
-    function getAllFoodporns() {
-        // Create Foodporns Array
+    function getAllLists() {
         $arrayjson = array();
 
-        // Foodporns
-        $foodporns = $this->db->getAllFoodporns();
-        foreach($foodporns as $foodporn)
+        $lists = $this->db->getAllLists();
+        foreach($lists as $list)
         {
-            $arrayFoodporn = array();
-            $arrayFoodporn["id_foodporn"] = $foodporn["id_foodporn"];
-            $arrayFoodporn["image"] = $foodporn["image"];
-            $arrayFoodporn["title"] = $foodporn["title"];
-            $arrayFoodporn["description"] = $foodporn["description"];
-            $arrayFoodporn["category"] = $foodporn["category"];
-            $arrayFoodporn["date"] = $foodporn["dateCreated"];
-            $arrayFoodporn["favorit"] = $this->db->isFavoriteFoodporn($foodporn["id_foodporn"]);
+            $arrayList = array();
+            $arrayList["id_list"] = $list["id_list"];
+            $arrayList["title"] = $list["title"];
+            $arrayList["category"] = $list["category"];
+            $arrayList["date"] = $list["dateCreated"];
 
             // Users   
-            $users = $this->db->getUserById($foodporn["fs_user"]);
+            $users = $this->db->getUserById($id_list["fk_user"]);
             foreach($users as $user)
             {
                 $arrayUser = array();
                 $arrayUser["id_user"] = $user["id_user"]; 
                 $arrayUser["username"] = $user["username"];
-                $arrayUser["description"] = $user["description"];
-                $arrayUser["image"] = $user["image"];
                 $arrayFoodporn["user"] = $arrayUser;
             }
-
-            // Likes
-            $arrayFoodporn["likes"] = $this->db->getCountLike($foodporn["id_foodporn"],1);
-            $arrayFoodporn["dislikes"] = $this->db->getCountLike($foodporn["id_foodporn"],0);
-            
-
-            // Comments
-            $comments = $this->db->getCommentsByFoodpornId($foodporn["id_foodporn"]);
-            foreach($comments as $comment)
-            {
-                $arrayComment = array();
-                $arrayComment["id_comment"] = $comment["id_comment"]; 
-                $arrayComment["content"] = $comment["content"];
-                $arrayComment["date"] = $comment["dateCreated"];
-
-                // Users
-                $users = $this->db->getUserById($comment["fs_user"]);
-                foreach($users as $user)
-                {
-                    $arrayUser = array();
-                    $arrayUser["id_user"] = $user["id_user"]; 
-                    $arrayUser["username"] = $user["username"];
-                    $arrayUser["description"] = $user["description"];
-                    $arrayUser["image"] = $user["image"];
-                    $arrayComment["user"] = $arrayUser;
-                }
-
-                $arrayFoodporn["comments"] = $arrayComment;
-            }
-
-            array_push($arrayjson, $arrayFoodporn);
+            array_push($arrayjson, $arrayList);
         }
         $this->json = json_encode($arrayjson);
     }

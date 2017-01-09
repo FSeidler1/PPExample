@@ -262,9 +262,9 @@ class DB
         }
 
         // Get ONLY Foodporn Comntext
-        function getAllFoodporns()
+        function getAllLists()
         {
-            $stmt = self::$_db->prepare("SELECT * FROM foodporn");
+            $stmt = self::$_db->prepare("SELECT * FROM list");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
