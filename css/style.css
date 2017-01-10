@@ -58,9 +58,9 @@ body {
     background: -ms-radial-gradient(center, ellipse cover, rgba(224, 224, 224, 1) 0%, rgba(180, 181, 182, 0.46) 100%);
     background: radial-gradient(ellipse at center, rgba(224, 224, 224, 1) 0%, rgba(180, 181, 182, 0.46) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#b4b5b6', GradientType=1);
-    -webkit-transition: background-color 1s;
+    -webkit-transition: background-color 0.5s;
     /* For Safari 3.1 to 6.0 */
-    transition: background-color 1s;
+    transition: background-color 0.5s;
 }
 
 .list-container:hover {
@@ -116,4 +116,55 @@ body {
 #listCatIcon:hover {
     text-decoration: none;
     color: #333;
+}
+
+
+/**********************************Responsive Stuff******************************************/
+
+
+/********************************************************************************************/
+
+@media screen and (max-width: 1300px) {
+    .list-title {
+        margin-left: 30px;
+        font-size: 24px;
+        margin-top: 8px;
+    }
+    .list-category {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 930px) {
+    .list-title {
+        font-size: 21px;
+    }
+    .list-category {
+        font-size: 16px;
+    }
+    .list-container {
+        min-width: 375px;
+        height: 120px;
+    }
+    .list-infos {
+        float: right;
+        width: 100%;
+        min-width: 135px;
+    }
+    .openModalButton {
+        float: right;
+        margin-right: 10px;
+    }
+    #listCatIcon {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .center-content {
+        width: 100%;
+    }
+    .list-container {
+        margin-left: 0px;
+    }
 }

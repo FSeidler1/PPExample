@@ -120,8 +120,6 @@ mainApp.controller('buildMainEntrys',
             //this.entry.id_foodporn
             $scope.entry.user.username = xEntry.user.username;
             $scope.entry.title = xEntry.title;
-            $scope.entry.description = xEntry.description;
-            $("#openModal_img").attr('src', xEntry.image);
             $("#myModal").modal();
         }
     });
